@@ -29,6 +29,7 @@ class Login {
 
     if (!bcryptjs.compareSync(this.body.password, this.user.password)){
       this.errors.push('E-mail ou senha inválido.')
+      this.user = null
       return
     }
   }
