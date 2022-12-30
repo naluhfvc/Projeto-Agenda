@@ -64,9 +64,16 @@ class Contato {
     }
 
     static async buscaContatos() {
-        /** Busca Contato no BD pelo id */
+        /** Busca Contato no BD */
         const contatos = await ContatoModel.find().sort({ criadoEm: -1 })
         return contatos
+    }
+
+    static async delete(id) {
+        /** Deleta Contato no BD pelo id */
+        if (typeof id !== 'string') return
+        await ContatoModel.findOneAndDelete({_id: id })
+        return 
     }
 }
 

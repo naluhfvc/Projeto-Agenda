@@ -60,5 +60,16 @@ exports.edit = async (req, res) => {
 }
 
 exports.delete = async (req, res) => {
-    
+    if (!req.params.id) return res.render('404')
+
+    try {
+        await Contato.delete(req.params.id)
+        
+        req.flash('success', 'Contato excluido com sucesso!')
+        req.session.save(() => res.redirect(`/`))
+        return
+    } catch (e) {
+        console.log(e)
+        return res.render('404')
+    }
 }
