@@ -9,6 +9,7 @@ mongoose.connect(process.env.MONGO_CONNECTION,
     useFindAndModify: false
   })
   .then(() => {
+    console.log('Conectou ao banco de dados.')
     app.emit('pronto');
   })
   .catch(e => console.log(e));
