@@ -17,7 +17,10 @@ route.post('/login/signin/', loginController.signin)
 route.get('/logout/', loginController.logout)
 
 //Rotas de contato
-route.get('/contato', loginRequired, contatoController.index);
+route.get('/contato/', loginRequired, contatoController.index);
+route.post('/contato/register/', loginRequired, contatoController.register);
+route.get('/contato/:id', loginRequired, contatoController.edit);
+
 
 
 module.exports = route;
