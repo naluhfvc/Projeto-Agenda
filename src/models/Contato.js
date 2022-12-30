@@ -17,18 +17,18 @@ class Contato {
         this.errors = [];
         this.contato = null;
     }
-    
-    static async buscaPorId (id) {
-        /** Busca Contato no BD pelo id */
-        if(typeof id !== 'string') return
-        const user = await ContatoModel.findById(id)
-        return user
-    }
 
     async register() {
         this.valida();
         if (this.errors.length > 0) return
         this.contato = await ContatoModel.create(this.body)
+    }
+
+    async edit(id) {
+        if (typeof id !== 'string') return
+        this.valida();
+        if(this.errors.length > 0) return 
+        this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {new: true})
     }
 
     valida() {
@@ -54,6 +54,19 @@ class Contato {
             email: this.body.email,
             telefone: this.body.telefone,
         }
+    }
+
+    static async buscaPorId(id) {
+        /** Busca Contato no BD pelo id */
+        if (typeof id !== 'string') return
+        const contato = await ContatoModel.findById(id)
+        return contato
+    }
+
+    static async buscaContatos() {
+        /** Busca Contato no BD pelo id */
+        const contatos = await ContatoModel.find().sort({ criadoEm: -1 })
+        return contatos
     }
 }
 
