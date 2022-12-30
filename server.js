@@ -50,10 +50,10 @@ app.use(csrf());
 app.use(middlewareGlobal);
 app.use(checkCsrfError);
 app.use(csrfMiddleware);
-app.use(routes);
+app.use('/agenda/',routes);
 
 app.on('pronto', () => {
   app.listen(process.env.PORT, () => {
-    console.log(`Acessar http://localhost:${process.env.PORT}`);
+    console.log(`Acessar http://localhost:${process.env.PORT}/agenda/`);
   });
 });

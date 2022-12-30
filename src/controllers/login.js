@@ -13,14 +13,14 @@ exports.register = async (req, res) => {
         if (login.errors.length > 0) {
             req.flash('errors', login.errors)
             req.session.save(() => {
-                return res.redirect('/login/');
+                return res.redirect('/agenda/login/');
             })
             return
         }
 
         req.flash('success', 'Usuário cadastrado com sucesso. Faça login.')
         req.session.save(() => {
-            return res.redirect('/login/');
+            return res.redirect('/agenda/login/');
         })
     } catch (e) {
         console.log(e)
@@ -36,7 +36,7 @@ exports.signin = async (req, res) => {
         if (login.errors.length > 0) {
             req.flash('errors', login.errors)
             req.session.save(() => {
-                return res.redirect('/login/');
+                return res.redirect('/agenda/login/');
             })
             return
         }
@@ -44,7 +44,7 @@ exports.signin = async (req, res) => {
         req.flash('success', 'Você agora está logado.')
         req.session.user = login.user;
         req.session.save(() => {
-            return res.redirect('/login/');
+            return res.redirect('/agenda/login/');
         })
     } catch (e) {
         console.log(e)
@@ -54,5 +54,5 @@ exports.signin = async (req, res) => {
 
 exports.logout = (req, res) => {
     req.session.destroy()
-    res.redirect('/login/')
+    res.redirect('/agenda/login/')
 }

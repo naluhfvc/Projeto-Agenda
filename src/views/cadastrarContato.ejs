@@ -13,9 +13,9 @@
             <p class="text-center lead">Crie ou edite seu contato</p>
             
             <% if (contato._id) { %>
-                <form action="/contato/edit/<%= contato._id %>/" method="post">
+                <form action="/agenda/contato/edit/<%= contato._id %>/" method="post">
             <% } else { %>
-                <form action="/contato/register/" method="post">
+                <form action="/agenda/contato/register/" method="post">
             <% } %>
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <div class="form-group">

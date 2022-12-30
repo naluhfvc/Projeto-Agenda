@@ -12,12 +12,12 @@ exports.register = async (req, res) => {
         await contato.register()
         if (contato.errors.length > 0) {
             req.flash('errors', contato.errors)
-            req.session.save(() => res.redirect('/contato/'))
+            req.session.save(() => res.redirect('/agenda/contato/'))
             return
         }
 
         req.flash('success', 'Contato registrado com sucesso!')
-        req.session.save(() => res.redirect(`/contato/${contato.contato._id}/`))
+        req.session.save(() => res.redirect(`/agenda/contato/${contato.contato._id}/`))
         return
     } catch (e) {
         console.log(e);
@@ -46,12 +46,12 @@ exports.edit = async (req, res) => {
 
         if (contato.errors.length > 0) {
             req.flash('errors', contato.errors)
-            req.session.save(() => res.redirect(`/contato/${req.params.id}/`))
+            req.session.save(() => res.redirect(`/agenda/contato/${req.params.id}/`))
             return
         }
 
         req.flash('success', 'Contato editado com sucesso!')
-        req.session.save(() => res.redirect(`/contato/${contato.contato._id}/`))
+        req.session.save(() => res.redirect(`/agenda/contato/${contato.contato._id}/`))
         return
     } catch(e) {
         console.log(e)
@@ -66,7 +66,7 @@ exports.delete = async (req, res) => {
         await Contato.delete(req.params.id)
         
         req.flash('success', 'Contato excluido com sucesso!')
-        req.session.save(() => res.redirect(`/`))
+        req.session.save(() => res.redirect(`/agenda/`))
         return
     } catch (e) {
         console.log(e)
